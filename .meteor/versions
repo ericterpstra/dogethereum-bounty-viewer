@@ -24,6 +24,7 @@ ecmascript@0.1.6
 ecmascript-runtime@0.2.6
 ejson@1.0.7
 es5-shim@4.1.14
+eterpstra:dogeticker@0.0.1
 ethereum:accounts@0.3.9
 ethereum:dapp-styles@0.4.5
 ethereum:elements@0.6.5

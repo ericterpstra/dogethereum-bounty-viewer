@@ -13,7 +13,8 @@ Template.hello.helpers({
     },
 
     dogeDAOBalanceDGB(bal) {
-        return EthTools.formatNumber( +EthTools.ticker.findOne('xdg').price * +bal, '0,0.00' );
+        let btc = +EthTools.ticker.findOne('btc').price * +bal;
+        return EthTools.formatNumber( +DogeTicker.ticker.findOne('doge').price * btc, '0,0.00' );
     },
 
     dogeDAOBalanceBTC(bal) {
@@ -29,7 +30,7 @@ Template.hello.helpers({
     },
 
     dogeDAOBalanceGBP(bal) {
-        return EthTools.formatNumber( +EthTools.ticker.findOne('cad').price * +bal, '0,0.00' );
+        return EthTools.formatNumber( +EthTools.ticker.findOne('gbp').price * +bal, '0,0.00' );
     },
 
     members() {
