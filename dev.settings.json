@@ -1,5 +1,3 @@
 {
-    "public" : {
-        "ethNodeUrl": "http://localhost:8545"
-    }
+    "ethNodeUrl": "http://localhost:8545"
 }

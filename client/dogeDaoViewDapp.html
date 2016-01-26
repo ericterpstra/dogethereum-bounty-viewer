@@ -3,58 +3,96 @@
 </head>
 
 <body>
-    <h1>Dogethereum Bounty DAO!</h1>
+    <header class="dapp-header">
+        <div class="dapp-container">
+            <h1>Dogethereum Bounty DAO!</h1>
+        </div>
+    </header>
     {{> hello}}
 </body>
 
 <template name="hello">
 
-    <div>
-        <h3>Bounty Value</h3>
-        <p><span>{{dogeDAOBalance}}</span> Ether</p>
-        <p>{{dogeDAOBalanceDollars dogeDAOBalance}} Dollars</p>
+    {{#if Template.subscriptionsReady}}
+
+    <div class="dapp-flex-content">
+
+        <main class="dapp-content">
+
+            <section class="container">
+                <h2>Bounty Value</h2>
+                <div class="row clear">
+                        <span class="col col-2">ETH {{dogeDAOBalance}}</span>
+                        <span class="col col-2">BTC {{dogeDAOBalanceBTC dogeDAOBalance}}</span>
+                </div>
+                <div class="row clear">
+                        <span class="col col-2">USD {{dogeDAOBalanceUSD dogeDAOBalance}}</span>
+                        <span class="col col-2">EUR {{dogeDAOBalanceEUR dogeDAOBalance}}</span>
+                        <span class="col col-2">GBP {{dogeDAOBalanceGBP dogeDAOBalance}}</span>
+                </div>
+                <p>See the Info and Links below to claim the Ethermoneys!</p>
+            </section>
+
+            <section>
+                <h2>Donate!</h2>
+                <ul class="dapp-account-list">
+                    <li>
+                        {{> dapp_identicon identity='0xdbf03b407c01e7cd3cbea99509d93f8dddc8c6fb' class="dapp-small"}}
+                        <h3>Ethereum Address</h3>
+                        <span>0xdbf03b407c01e7cd3cbea99509d93f8dddc8c6fb</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>A Little Info</h2>
+                <p>
+                    This page tracks the bounty for the work on the Dogecoin &lt;=&gt; Ethereum connection.<br/>
+                    The information is read from a <a href="https://blog.ethereum.org/2014/05/06/daos-dacs-das-and-more-an-incomplete-terminology-guide/">DAO contract</a> created by <a href="https://www.reddit.com/user/avsa">Alex van de Sande</a> and updated regularly.<br/>
+                    The code for this page is on <a href="https://github.com/ericterpstra/dogethereum-bounty-viewer">GitHub</a>. Much Doge-iness coming soon.
+                </p>
+            </section>
+
+
+            <section>
+                <h2>Links</h2>
+                <ul>
+                    <li><a href="https://np.reddit.com/r/dogecoin/comments/3x9ei0/brain_dump_dogecoin_on_ethereum/">Original Post (I think)</a></li>
+                    <li><a href="https://www.reddit.com/r/ethereum/comments/41ohhr/the_doge_connection_bounty_dao_is_live_and_working/">Dogethereum Bounty DAO Post</a></li>
+                    <li><a href="https://np.reddit.com/r/dogethereum/">/r/dogethereum</a></li>
+                    <li><a href="https://ethereum.org/">Ethereum</a></li>
+                    <li><a href="http://dogecoin.com/">Dogecoin</a></li>
+
+                </ul>
+            </section>
+
+            <section>
+                <h2>Members</h2>
+                <ul>
+                    {{#each member in members}}
+                        <li>{{member}}</li>
+                    {{/each}}
+                </ul>
+            </section>
+
+            <section>
+                <h2>Proposals</h2>
+                <ul>
+                    {{#each prop in proposals}}
+                        <li>{{prop.name}} - {{isExecuted prop.executed}}</li>
+                    {{/each}}
+                </ul>
+            </section>
+
+        </main>
+
     </div>
 
+    {{else}}
 
-    <div>
-        <h3>A Little Info</h3>
-        <p>
-            This page tracks the bounty for the work on the Dogecoin &lt;-&gt; Ethereum connection.<br/>
-            The information is read from a <a href="https://blog.ethereum.org/2014/05/06/daos-dacs-das-and-more-an-incomplete-terminology-guide/">DAO contract</a> created by <a href="https://www.reddit.com/user/avsa">Alex van de Sande</a>.<br/>
-            More info, and a better looking page will be up soon-ish.<br/>
-            Donation Address: 0xdbf03b407c01e7cd3cbea99509d93f8dddc8c6fb</p>
-    </div>
+        <div>Doge-ing. Wait, plz.</div>
 
-
-    <div>
-        <h3>Links</h3>
-        <ul>
-            <li><a href="https://np.reddit.com/r/dogecoin/comments/3x9ei0/brain_dump_dogecoin_on_ethereum/">Original Post (I think)</a></li>
-            <li><a href="https://www.reddit.com/r/ethereum/comments/41ohhr/the_doge_connection_bounty_dao_is_live_and_working/">Dogethereum Bounty DAO Post</a></li>
-            <li><a href="https://np.reddit.com/r/dogethereum/">/r/dogethereum</a></li>
-            <li><a href="https://ethereum.org/">Ethereum</a></li>
-            <li><a href="http://dogecoin.com/">Dogecoin</a></li>
-
-        </ul>
-    </div>
-
-    <div>
-        <h3>Members</h3>
-        <ul>
-            {{#each member in members}}
-                <li>{{member}}</li>
-            {{/each}}
-        </ul>
-    </div>
-
-    <div>
-        <h3>Proposals</h3>
-        <ul>
-            {{#each prop in proposals}}
-                <li>{{prop}}</li>
-            {{/each}}
-        </ul>
-    </div>
+    {{/if}}
 
 
 </template>

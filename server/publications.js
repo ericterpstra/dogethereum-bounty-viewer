@@ -1,0 +1,1 @@
+Meteor.publish('contracts', () => Contracts.find({}) );
